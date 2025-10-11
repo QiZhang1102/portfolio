@@ -89,4 +89,40 @@ h1, h2 {
   text-wrap: balance;
 }
 
+/*Step 5*/
+.resume {
+  display: grid;
+  gap: 2em;
+  margin-block: 2em;
+}
 
+.resume header {
+  text-align: center;
+  border-bottom: 1px solid oklch(80% 3% 200);
+  padding-bottom: 0.4em;
+}
+
+.resume h1 { font-size: 2rem; }
+.resume h2 { font-size: 1.5rem; }
+.resume h3 { font-size: 1.2rem; }
+
+.resume section {
+  padding: 1em 1.5em;
+  border-radius: 0.5em;
+  background: none;
+}
+
+.resume time {
+  font-size: 0.9rem;
+  color: oklch(45% 0% 0);
+}
+
+.resume ul {
+  margin-top: 1em;
+  margin-left: 1em;
+  list-style: disc;
+}
+
+.resume li {
+  margin-bottom: 0.3em;
+}
