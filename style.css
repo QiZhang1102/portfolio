@@ -63,7 +63,7 @@ form button {
 
 .projects {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(18em, 1fr));
   gap: 1em;
   margin-block: 1em;
 }
@@ -72,10 +72,16 @@ form button {
   grid-template-rows: subgrid;
   grid-row: span 3;
   margin: 0;
+  gap: 1em
 }
+
 
 .projects h2 {
   margin: 0;
+}
+
+h1 {
+  font-size: 400%;
 }
 
 h1, h2 {
@@ -83,6 +89,4 @@ h1, h2 {
   text-wrap: balance;
 }
 
-h1 {
-  font-size: 400%;
-}
+
