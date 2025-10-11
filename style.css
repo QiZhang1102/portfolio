@@ -124,5 +124,7 @@ h1, h2 {
 }
 
 .resume li {
-  margin-bottom: 0.3em;
+  margin-bottom: 0.5em;
+  line-height: 1.5;
+  position: relative;
 }
