@@ -134,3 +134,16 @@ nav a.current {
   font-weight: bold;
   color: #333;
 }
+
+nav {
+  --border-color: oklch(50% 10% 200 / 40%);
+}
+
+nav {
+  border-bottom: 1px solid transparent;
+  border-bottom-color: var(--border-color);
+}
+
+.some-selector {
+  border-bottom-color: var(--border-color);
+}
