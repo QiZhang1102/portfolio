@@ -128,3 +128,9 @@ h1, h2 {
   line-height: 1.5;
   position: relative;
 }
+
+nav a.current {
+  border-bottom: 3px solid #555;
+  font-weight: bold;
+  color: #333;
+}
