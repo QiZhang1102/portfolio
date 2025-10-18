@@ -7,7 +7,7 @@ function $$(selector, context = document) {
 
 let pages = [
   { url: '', title: 'Home' },
-  { url: 'project/', title: 'Projects' },
+  { url: 'projects/', title: 'Projects' },
   { url: 'contact/', title: 'Contact' },
   { url: 'resume/', title: 'Resume' },
   { url: 'https://github.com/QiZhang1102',title: 'GitHub' },
@@ -42,3 +42,39 @@ a.classList.toggle(
 
 a.toggleAttribute('target', a.host !== location.host);
 } 
+
+document.body.insertAdjacentHTML(
+  "afterbegin",
+  `
+	<label class="color-scheme">
+		Theme:
+		<select>
+                <option value="light dark">Automatic</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+		</select>
+	</label>`,
+);
+
+const select = document.querySelector(".color-scheme select");
+function setColorScheme(scheme) {
+  document.documentElement.style.setProperty("color-scheme", scheme);
+  select.value = scheme;
+  localStorage.colorScheme = scheme;
+}
+
+if ("colorScheme" in localStorage) {
+  setColorScheme(localStorage.colorScheme);
+} else {
+  setColorScheme("light dark");
+}
+
+
+select.addEventListener("input", function (event) {
+  console.log("color scheme changed to", event.target.value);
+  setColorScheme(event.target.value);
+});
+
+const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+const autoOption = select.querySelector('option[value="light dark"]');
+autoOption.textContent = prefersDark ? "Automatic (Dark)" : "Automatic (Light)";

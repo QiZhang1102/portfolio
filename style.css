@@ -11,7 +11,8 @@ ul, li {
 nav {
   display: flex;
   margin-bottom: 1em;
-  border-bottom: 1px solid oklch(80% 3% 200);
+  --border-color: oklch(50% 10% 200 / 40%);
+  border-bottom: 1px solid var(--border-color);
 }
 
 nav a {
@@ -29,14 +30,16 @@ nav a.current {
 }
 
 
-html {
-  --color-accent: oklch(65% 50% 0);
-  accent-color: var(--color-accent);
-}
 nav a:hover {
   border-bottom: 0.4em solid var(--color-accent);
-  background-color: oklch(from var(--color-accent) 95% 5% h);
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
   padding-bottom: 0.1em;
+}
+
+html {
+  color-scheme: light dark; 
+  --color-accent: oklch(65% 50% 0);
+  accent-color: var(--color-accent);
 }
 
 /*Step 3*/
@@ -98,7 +101,7 @@ h1, h2 {
 
 .resume header {
   text-align: center;
-  border-bottom: 1px solid oklch(80% 3% 200);
+  border-bottom: 1px solid var(--border-color);
   padding-bottom: 0.4em;
 }
 
@@ -129,21 +132,21 @@ h1, h2 {
   position: relative;
 }
 
-nav a.current {
-  border-bottom: 3px solid #555;
-  font-weight: bold;
-  color: #333;
+.color-scheme {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 80%;
+  font-family: inherit;
+  color: canvastext;
+  background: none;
+  border: none;
 }
 
-nav {
-  --border-color: oklch(50% 10% 200 / 40%);
+.color-scheme select {
+  font-family: inherit;
+  font-size: 1em;
+  background-color: canvas;
 }
 
-nav {
-  border-bottom: 1px solid transparent;
-  border-bottom-color: var(--border-color);
-}
 
-.some-selector {
-  border-bottom-color: var(--border-color);
-}
