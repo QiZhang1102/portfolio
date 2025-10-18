@@ -56,7 +56,10 @@ document.body.insertAdjacentHTML(
 	</label>`,
 );
 
+
+
 const select = document.querySelector(".color-scheme select");
+
 function setColorScheme(scheme) {
   document.documentElement.style.setProperty("color-scheme", scheme);
   select.value = scheme;
@@ -69,12 +72,7 @@ if ("colorScheme" in localStorage) {
   setColorScheme("light dark");
 }
 
-
 select.addEventListener("input", function (event) {
   console.log("color scheme changed to", event.target.value);
   setColorScheme(event.target.value);
 });
-
-const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-const autoOption = select.querySelector('option[value="light dark"]');
-autoOption.textContent = prefersDark ? "Automatic (Dark)" : "Automatic (Light)";
