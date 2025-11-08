@@ -287,3 +287,23 @@ path {
 path {
   cursor: pointer;
 }
+
+
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.stats dt {
+  font-size: 0.8rem;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.stats dd {
+  font-size: 2rem;
+  margin: 0;
+}
