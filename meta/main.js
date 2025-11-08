@@ -4,6 +4,8 @@ function createBrushSelector(svg) {
   svg.call(d3.brush());
 }
 
+
+
 async function loadData() {
   const data = await d3.csv('loc.csv', (row) => ({
     ...row,
@@ -104,9 +106,58 @@ function updateTooltipPosition(event) {
 function brushed(event) {
   const selection = event.selection;
 
+
   d3.selectAll('circle').classed('selected', (d) =>
     isCommitSelected(selection, d)
   );
+
+  renderSelectionCount(selection);
+  renderLanguageBreakdown(selection);
+}
+
+function renderSelectionCount(selection) {
+  const selectedCommits = selection
+    ? commits.filter((d) => isCommitSelected(selection, d))
+    : [];
+
+  const countElement = document.querySelector('#selection-count');
+  countElement.textContent = `${
+    selectedCommits.length || 'No'
+  } commits selected`;
+  return selectedCommits;
+
+  }
+
+function renderLanguageBreakdown(selection) {
+  const selectedCommits = selection
+    ? commits.filter((d) => isCommitSelected(selection, d))
+    : [];
+    
+  const container = document.getElementById('language-breakdown');
+
+
+  if (selectedCommits.length === 0) {
+    container.innerHTML = '';
+    return;
+  }
+  const requiredCommits = selectedCommits.length ? selectedCommits : commits;
+  const lines = requiredCommits.flatMap((d) => d.lines);
+  const breakdown = d3.rollup(
+    lines,
+    (v) => v.length,
+    (d) => d.type
+  );
+  container.innerHTML = '';
+
+  for (const [language, count] of breakdown) {
+    const proportion = count / lines.length;
+    const formatted = d3.format('.1~%')(proportion);
+
+    container.innerHTML += `
+      <dt>${language}</dt>
+      <dd>${count} lines (${formatted})</dd>
+    `;
+  }
 }
 
 function isCommitSelected(selection, commit) {
