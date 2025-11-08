@@ -10,6 +10,7 @@ let pages = [
   { url: 'projects/', title: 'Projects' },
   { url: 'contact/', title: 'Contact' },
   { url: 'resume/', title: 'Resume' },
+  { url: 'meta/', title: 'Meta' }, 
   { url: 'https://github.com/QiZhang1102',title: 'GitHub' },
 ];
 
@@ -109,6 +110,7 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
       <${headingLevel}>${project.title}</${headingLevel}>
       <img src="${project.image}" alt="${project.title}">
       <p>${project.description}</p>
+      <p class="year">c. ${project.year}</p>
     `;
     containerElement.appendChild(article);
   }

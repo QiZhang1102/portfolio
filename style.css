@@ -165,3 +165,17 @@ h1, h2 {
   margin: 0;
 }
 
+.year {
+  font-family: Baskerville, serif;
+  font-variant-numeric: oldstyle-nums;
+  color: #555;
+  font-style: italic;
+  margin-top: 0.5em;
+}
+
+#projects-pie-plot {
+  max-width: 20em;
+  margin-block: 2em;
+
+  overflow: visible;
+}
