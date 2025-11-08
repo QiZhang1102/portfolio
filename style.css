@@ -412,3 +412,9 @@ circle.selected {
   stroke: white;
   stroke-width: 2;
 }
+.summary-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
