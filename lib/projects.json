@@ -1,75 +1,87 @@
 [
   {
-    "title": "Lorem ipsum dolor sit.",
-    "year": "2024",
-    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "No description"
+    "title": "Bikewatching",
+    "year": "2025",
+    "image": "image/bikewatching.png",
+    "description": "An interactive Mapbox and D3 visualization of Bluebikes traffic using March 2024 data",
+    "url": "https://qizhang1102.github.io/bikewatching/"
   },
   {
     "title": "Facilis illum saepe magni.",
     "year": "2020",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "No description"
+    "description": "No description",
+    "url": null
   },
   {
     "title": "Nam repellat consectetur nulla.",
     "year": "2020",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "No description"
+    "description": "No description",
+    "url": null
   },
   {
     "title": "Quisquam deleniti exercitationem earum?",
     "year": "2020",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "No description"
+    "description": "No description",
+    "url": null
   },
   {
     "title": "Dolorum itaque nisi eum.",
     "year": "2020",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "No description"
+    "description": "No description",
+    "url": null
   },
   {
     "title": "Cupiditate porro necessitatibus magnam!",
     "year": "2020",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "No description"
+    "description": "No description",
+    "url": null
   },
   {
     "title": "Consequuntur laboriosam laudantium ad.",
     "year": "2024",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "No description"
+    "description": "No description",
+    "url": null
   },
   {
     "title": "Saepe ratione error commodi?",
     "year": "2024",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "No description"
+    "description": "No description",
+    "url": null
   },
   {
     "title": "Consectetur qui enim est.",
     "year": "2024",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "No description"
+    "description": "No description",
+    "url": null
   },
   {
     "title": "Possimus voluptatum qui commodi?",
     "year": "2024",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "No description"
+    "description": "No description",
+    "url": null
   },
   {
     "title": "Veritatis eos nisi commodi?",
     "year": "2024",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "No description"
+    "description": "No description",
+    "url": null
   },
   {
     "title": "Quos aliquid nulla exercitationem?",
     "year": "2024",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "No description"
+    "description": "No description",
+    "url": null
   }
 ]
 

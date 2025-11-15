@@ -106,16 +106,25 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
 
   for (const project of projects) {
     const article = document.createElement('article');
+
     article.innerHTML = `
       <${headingLevel}>${project.title}</${headingLevel}>
-      <img src="${project.image}" alt="${project.title}">
+      <img src="${BASE_PATH}${project.image}" alt="${project.title}">
       <p>${project.description}</p>
       <p class="year">c. ${project.year}</p>
+
+      ${
+        project.url
+          ? `<a class="project-link" href="${project.url}" target="_blank">View project</a>`
+          : ''
+      }
     `;
+
     containerElement.appendChild(article);
-  }
 }
+}
+
+
 export async function fetchGitHubData(username) {
   return fetchJSON(`https://api.github.com/users/${username}`);
 }
-
