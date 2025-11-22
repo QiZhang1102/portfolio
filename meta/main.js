@@ -1,4 +1,5 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
+import scrollama from 'https://cdn.jsdelivr.net/npm/scrollama@3.2.0/+esm';
 
 let commitProgress = 100;
 let timeScale = null;
@@ -49,7 +50,8 @@ function processCommits(data) {
       });
 
       return ret;
-    });
+    })
+    .sort((a, b) => a.datetime - b.datetime);   // ⭐⭐ 必须加
 }
 
 function renderCommitInfo(data, commits) {
@@ -385,10 +387,11 @@ function onTimeSliderChange() {
   commitProgress = Number(slider.value);
   commitMaxTime = timeScale.invert(commitProgress);
 
-  timeEl.textContent = commitMaxTime.toLocaleString(undefined, {
-    dateStyle: "long",
-    timeStyle: "short",
-  });
+  timeEl.textContent = commitMaxTime.toLocaleString("en-US", {
+  dateStyle: "long",
+  timeStyle: "short",
+});
+
   filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
   updateScatterPlot(data, filteredCommits);
   updateFileDisplay(filteredCommits);
@@ -399,3 +402,51 @@ slider.addEventListener("input", onTimeSliderChange);
 slider.addEventListener("change", onTimeSliderChange);
 
 onTimeSliderChange();
+
+d3.select('#scatter-story')
+  .selectAll('.step')
+  .data(commits)
+  .join('div')
+  .attr('class', 'step')
+  .html(
+    (d, i) => `
+      <p>
+        On ${d.datetime.toLocaleString('en', {
+          dateStyle: 'full',
+          timeStyle: 'short',
+        })},
+        I made <a href="${d.url}" target="_blank">
+        ${i > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'}
+        </a>.
+        I edited ${d.totalLines} lines across ${
+          d3.rollups(
+            d.lines,
+            (D) => D.length,
+            (d) => d.file,
+          ).length
+        } files.
+      </p>
+    `
+  );
+
+  function onStepEnter(response) {
+  const commit = response.element.__data__;
+  const targetTime = commit.datetime;
+  filteredCommits = commits.filter(d => d.datetime <= targetTime);
+
+  updateScatterPlot(data, filteredCommits);
+  updateFileDisplay(filteredCommits);
+
+  document.querySelector("#commit-time").textContent =
+  targetTime.toLocaleString("en-US", {
+    dateStyle: "long",
+    timeStyle: "short",
+  });}
+
+const scroller = scrollama();
+scroller
+  .setup({
+    container: '#scrolly-1',
+    step: '#scrolly-1 .step',
+  })
+  .onStepEnter(onStepEnter);

@@ -475,3 +475,37 @@ circle {
   font-size: 0.8em;
   opacity: 0.6;
 }
+
+#scrolly-1 {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+#scrolly-1 > * {
+  flex: 1;
+}
+
+#scatter-story {
+  position: relative;
+  padding-right: 1rem;
+}
+
+#scatter-plot {
+  position: sticky;
+  top: 0;
+  height: 50vh;
+  overflow: visible;
+}
+
+
+.step {
+  padding-bottom: 30vh; 
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+#files {
+  margin-top: 3rem; 
+}

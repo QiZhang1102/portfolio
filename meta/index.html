@@ -9,6 +9,7 @@
 <body>
   <h1>Meta</h1>
   <p class="summary-title">Summary</p>
+  <div id="stats"></div>
   <div id="commit-filter" style="display:flex; align-items:baseline;">
     <label for="commit-progress" style="flex:1;">
     Show commits until:
@@ -17,14 +18,20 @@
   <time id="commit-time" style="margin-left:auto;"></time>
 </div>
 
-<dl id="files"> </dl>
-  <div id="stats"></div>
-  <h2>Commits by time of day</h2>
-  <div id="chart"></div>
-  <p id="selection-count">No commits selected</p>
-  <dl id="language-breakdown" class="stats"></dl>
+<div id="scrolly-1">
+    <div id="scatter-story">
+    </div>
+    <div id="scatter-plot">
+      <h2>Commits by time of day</h2>
+      <div id="chart"></div>
+      <p id="selection-count">No commits selected</p>
+      <dl id="language-breakdown" class="stats"></dl>
+    </div>
 
-  <dl id="commit-tooltip" class="info tooltip" hidden>
+  </div>
+
+<dl id="files"> </dl>
+<dl id="commit-tooltip" class="info tooltip" hidden>
     <dt>Commit</dt>
     <dd><a href="" id="commit-link" target="_blank"></a></dd>
     <dt>Date</dt>
@@ -33,15 +40,11 @@
     <dd id="commit-author"></dd>
     <dt>Lines changed</dt>
     <dd id="commit-lines"></dd>
-
     <dt>Time</dt>
     <dd id="tooltip-time"></dd>
-
-
   </dl>
 
   <script type="module" src="../global.js"></script>
-
   <script type="module" src="./main.js"></script>
 
 </body>
