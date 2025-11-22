@@ -51,10 +51,11 @@ function processCommits(data) {
 
       return ret;
     })
-    .sort((a, b) => a.datetime - b.datetime);   // ⭐⭐ 必须加
+    .sort((a, b) => a.datetime - b.datetime); 
 }
 
 function renderCommitInfo(data, commits) {
+  d3.select('#stats').html("");
   const dl = d3.select('#stats').append('dl').attr('class', 'stats');
 
   dl.append('dt').text('Commits');
@@ -381,22 +382,26 @@ function updateFileDisplay(filteredCommits) {
 }
 
 function onTimeSliderChange() {
-  const slider = document.getElementById("commit-progress");
-  const timeEl = document.getElementById("commit-time");
-
   commitProgress = Number(slider.value);
   commitMaxTime = timeScale.invert(commitProgress);
 
-  timeEl.textContent = commitMaxTime.toLocaleString("en-US", {
-  dateStyle: "long",
-  timeStyle: "short",
-});
+  filteredCommits = commits.filter(d => d.datetime <= commitMaxTime);
 
-  filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
+  const filteredLines = filteredCommits.flatMap(d => d.lines);
+  renderCommitInfo(filteredLines, filteredCommits);
+
   updateScatterPlot(data, filteredCommits);
   updateFileDisplay(filteredCommits);
+
+  timeEl.textContent = commitMaxTime.toLocaleString("en-US", {
+    dateStyle: "long",
+    timeStyle: "short",
+  });
 }
 
+
+
+const timeEl = document.getElementById("commit-time");
 const slider = document.getElementById("commit-progress");
 slider.addEventListener("input", onTimeSliderChange);
 slider.addEventListener("change", onTimeSliderChange);
@@ -432,17 +437,29 @@ d3.select('#scatter-story')
   function onStepEnter(response) {
   const commit = response.element.__data__;
   const targetTime = commit.datetime;
+
+  commitMaxTime = targetTime;
+  const p = timeScale(commitMaxTime);
+  document.getElementById("commit-progress").value = Math.round(p);
+
+
   filteredCommits = commits.filter(d => d.datetime <= targetTime);
+
+  const filteredLines = filteredCommits.flatMap(d => d.lines);
 
   updateScatterPlot(data, filteredCommits);
   updateFileDisplay(filteredCommits);
+  renderCommitInfo(
+    filteredLines, 
+    filteredCommits
+  );
 
   document.querySelector("#commit-time").textContent =
-  targetTime.toLocaleString("en-US", {
-    dateStyle: "long",
-    timeStyle: "short",
-  });}
-
+    targetTime.toLocaleString("en-US", {
+      dateStyle: "long",
+      timeStyle: "short",
+    });
+}
 const scroller = scrollama();
 scroller
   .setup({
